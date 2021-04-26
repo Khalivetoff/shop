@@ -8,7 +8,7 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         contentBase: path.resolve(__dirname, './dist'),
-        open: true,
+        open: false,
         compress: false,
         hot: true,
         port: 8085,
@@ -47,7 +47,7 @@ module.exports = {
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
         }),
-        new CleanWebpackPlugin(),
+        //new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
 };

@@ -1,3 +1,4 @@
+import '@mdi/font/scss/materialdesignicons.scss';
 import './style/main.scss'
 
 import Shop from "./Shop";

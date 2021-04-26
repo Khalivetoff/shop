@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const $requests = {
-    url: 'http://localhost:8085/backend',
+    url: 'http://localhost:8085/shop-backend',
     request({method = 'get', url = this.url, endPoint, data = undefined}) {
         return new Promise(resolve => {
             axios({
@@ -24,7 +24,11 @@ const $requests = {
     },
     async structure() {
         return await this.request({endPoint: 'structure.json'});
-    }
+    },
+    async description() {
+        return await this.request({endPoint: 'descriptions.json'});
+    },
 }
+
 
 export default $requests;
