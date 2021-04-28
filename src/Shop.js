@@ -8,12 +8,12 @@ export default function Shop() {
     this.structure = {};
     this.descriptions = {};
     this.shopEl = undefined;
-    this.onProductClick = undefined;
+    this.onChangeProducts = undefined;
 
-    this.init = async function(shopSelector, onProductClick) {
+    this.init = async function(shopSelector, onProductsChange) {
         if (instance) return;
         instance = true;
-        this.setOnProductClick(onProductClick);
+        this.setOnChangeProducts(onProductsChange);
         await Promise.all([this.setInternalProducts(), this.setStructure(), this.setDescriptions()]);
         await this.setProducts();
         this.shopEl = document.querySelector(shopSelector);
@@ -47,21 +47,21 @@ export default function Shop() {
         this.products = [];
         this._products.forEach(pItem => {
             if (pItem.allowed) {
-                this.products.push(new Product(pItem, this.structure, this.descriptions, this.onProductClick));
+                this.products.push(new Product(pItem, this.structure, this.descriptions, this.onChangeProducts));
             }
         })
     }
 
     this.buildShop = function() {
         this.products.forEach(pItem => {
-            this.shopEl.appendChild(pItem.element);
+            this.shopEl.appendChild(pItem.elements.this);
         })
     }
 
-    this.setOnProductClick = function(onProductClick) {
-        this.onProductClick = onProductClick;
+    this.setOnChangeProducts = function(onProductClick) {
+        this.onChangeProducts = onProductClick;
         if (!!this.products.length) {
-            this.products.forEach(pItem => pItem.setOnProductClick(this.onProductClick));
+            this.products.forEach(pItem => pItem.setOnChangeProduct(this.onChangeProducts));
         }
     }
 }
